@@ -1,6 +1,6 @@
  # frozen_string_literal: true
 
-RSpec.describe 'POST /api/v1/auth/sign_in', type: :request do
+RSpec.describe 'POST "/api/v1/auth/sign_in"', type: :request do
   let(:headers) { { HTTP_ACCEPT: 'application/json' } }
   let(:user) { create(:user) }
   let(:expected_response) do
