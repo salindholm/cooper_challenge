@@ -1,15 +1,15 @@
-RSpec.describe 'POST 'api/v1/auth'', type: :request do
+RSpec.describe 'POST /api/v1/auth', type: :request do
   let(:headers) { { HTTP_ACCEPT: 'application/json' } }
 
   describe 'with valid credentials' do
     before do
       post '/api/v1/auth',
-        params: {
-          email: 'example@example.com'
-          password: 'eightcharacters'
-          password_confirmation: 'eightcharacters'
-        },
-        headers: headers
+          params: {
+            email: 'example@craftacademy.se',
+            password: 'password',
+            password_confirmation: 'password'
+          },
+          headers: headers
     end
 
     it 'returns a 200 response status' do
@@ -24,13 +24,13 @@ RSpec.describe 'POST 'api/v1/auth'', type: :request do
   context 'when a user submits' do
     describe 'a non-matching password confirmation' do
       before do
-        post 'api/v1/auth',
-          params: {
-           email: 'example@example.com'
-            password: 'eightcharacters'
-            password_confirmation: 'threecharacters'
-          },
-          headers: headers
+        post '/api/v1/auth',
+            params: {
+              email: 'example@craftacademy.se',
+              password: 'password',
+              password_confirmation: 'wrong_password'
+            },
+            headers: headers
       end
 
       it 'returns a 422 response status' do
@@ -44,13 +44,13 @@ RSpec.describe 'POST 'api/v1/auth'', type: :request do
 
     describe 'an invalid email address' do
       before do
-        post 'api/v1/auth',
-          params: {
-           email: 'example@example'
-            password: 'eightcharacters'
-            password_confirmation: 'eightcharacters'
-          },
-          headers: headers
+        post '/api/v1/auth',
+            params: {
+              email: 'example@craft',
+              password: 'password',
+              password_confirmation: 'password'
+            },
+            headers: headers
       end
 
       it 'returns a 422 response status' do
@@ -63,16 +63,16 @@ RSpec.describe 'POST 'api/v1/auth'', type: :request do
     end
 
     describe 'an already registered email' do
-      let!(:registered_user) { create(:user, email: 'registereduser@registereduser.com') }
+      let!(:registered_user) { create(:user, email: 'coach@craftacademy.se') }
 
       before do
-        post 'api/v1/auth',
-          params: {
-           email: 'registereduser@registereduser.com'
-            password: 'eightcharacters'
-            password_confirmation: 'eightcharacters'
-          },
-          headers: headers
+        post '/api/v1/auth',
+            params: {
+              email: 'coach@craftacademy.se',
+              password: 'password',
+              password_confirmation: 'password'
+            },
+            headers: headers
       end
 
       it 'returns a 422 response status' do
@@ -83,8 +83,5 @@ RSpec.describe 'POST 'api/v1/auth'', type: :request do
         expect(response_json['errors']['email']).to eq ['has already been taken']
       end
     end
-    #Test for email left blank
-    #Test for password left blank
-    #Test for password not meeting requirements
   end
 end

@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_11_17_185323) do
     t.string "email"
     t.json "tokens"
     t.integer "sign_in_count", default: 0
-    t.datetime "currnet_sign_in_at"
+    t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
