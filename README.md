@@ -4,7 +4,7 @@
 This is the API of the full stack application we have created to get and save the users cooper results.
 
 ## The code
-- [Deployment app(Netlify)](whssl-cooper-challenge.netlify.app)
+- [Deployment app(Netlify)](https://whssl-cooper-challenge.netlify.app/)
 - [Client](https://github.com/salindholm/cooper_challenge)
 - [Github](https://github.com/salindholm/cooper_api)
 
